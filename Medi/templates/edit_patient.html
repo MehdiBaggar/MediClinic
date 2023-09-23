@@ -1,0 +1,170 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit patient</title>
+    <link rel="stylesheet" href="{% static 'css/edit_page.css' %}">
+</head>
+<body>    
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Edit Patient Information</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Create form fields for editing patient information -->
+                        <div class="form-group">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ patient.first_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ patient.last_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="text" class="form-control" id="age" name="age" value="{{ patient.age }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option value="Male" {% if patient.gender == 'Male' %}selected{% endif %}>Male</option>
+                                <option value="Female" {% if patient.gender == 'Female' %}selected{% endif %}>Female</option>
+                                <option value="Other" {% if patient.gender == 'Other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ patient.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ patient.email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="stable">Stable</option>
+                                <option value="improving">Improving</option>
+                                <option value="critical">Critical</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">blood type:</label>
+                            <select class="form-control" id="blood_type" name="blood_type">
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">allergies:</label>
+                            <select class="form-control" id="allergies" name="allergies">
+                                <option value="Pollen">Pollen</option>
+                                <option value="Dust Mites">Dust Mites</option>
+                                <option value="Pet Dander">Pet Dander</option>
+                                <option value="Mold">Mold</option>
+                                <option value="Food Allergies">Food Allergies</option>
+                                <option value="Insect Sting Allergies">Insect Sting Allergies</option>
+                                <option value="Medication Allergies">Medication Allergies</option>
+                                <option value="Latex Allergy">Latex Allergy</option>
+                                <option value="Cockroach Allergy">Cockroach Allergy</option>
+                                <option value="Other">Other</option>
+                                <option value="nothing">nothing</option>
+                                     <!-- Add more allergy options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="diagnosis">Diagnosis:</label>
+                            <select class="form-control" id="diagnosis" name="diagnosis">
+                                <option value="Hypertension (High Blood Pressure)">Hypertension (High Blood Pressure)</option>
+                                <option value="Type 2 Diabetes">Type 2 Diabetes</option>
+                                <option value="Asthma">Asthma</option>
+                                <option value="Allergic Rhinitis">Allergic Rhinitis</option>
+                                <option value="Migraine">Migraine</option>
+                                <option value="Depression">Depression</option>
+                                <option value="Anxiety Disorder">Anxiety Disorder</option>
+                                <option value="Obesity">Obesity</option>
+                                <option value="Chronic Obstructive Pulmonary Disease (COPD)">Chronic Obstructive Pulmonary Disease (COPD)</option>
+                                <option value="Coronary Artery Disease">Coronary Artery Disease</option>
+                                <option value="Hyperthyroidism">Hyperthyroidism</option>
+                                <option value="Hypothyroidism">Hypothyroidism</option>
+                                <option value="Gastroesophageal Reflux Disease (GERD)">Gastroesophageal Reflux Disease (GERD)</option>
+                                <option value="Rheumatoid Arthritis">Rheumatoid Arthritis</option>
+                                <option value="Osteoarthritis">Osteoarthritis</option>
+                                <option value="Eczema">Eczema</option>
+                                <option value="Psoriasis">Psoriasis</option>
+                                <option value="Celiac Disease">Celiac Disease</option>
+                                <option value="Irritable Bowel Syndrome (IBS)">Irritable Bowel Syndrome (IBS)</option>
+                                <option value="Chronic Kidney Disease">Chronic Kidney Disease</option>
+                                <option value="Stroke">Stroke</option>
+                                <option value="Alzheimer's Disease">Alzheimer's Disease</option>
+                                <option value="Multiple Sclerosis">Multiple Sclerosis</option>
+                                <option value="HIV/AIDS">HIV/AIDS</option>
+                                <option value="Cancer">Cancer</option>
+                            <!-- Add more diagnosis options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height:</label>
+                            <input type="text" class="form-control" id="height" name="height" value="{{ patient.height }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight:</label>
+                            <input type="text" class="form-control" id="weight" name="weight" value="{{ patient.weight }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth">Date of Birth:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ patient.date_of_birth|date:'Y-m-d' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Doctor:</label>
+                            <select class="form-control" id="doctor" name="doctor">
+                                {% for doctor in doctor %}
+                                <option value="{{ doctor.id}}">{{ doctor.id}}-{{ doctor.first_name}} {{ doctor.last_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="prescription">Prescription:</label>
+                            <input type="text" class="form-control" id="prescription" name="prescription" value="{{ patient.prescription }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="medication">medication:</label>
+                            <input type="text" class="form-control" id="medication" name="medication" value="{{ patient.medication}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="traitement">Traitement:</label>
+                            <input type="text" class="form-control" id="traitement" name="traitement" value="{{ patient.traitement }}">
+                        </div>
+                         <div class="form-group">
+                            <label for="photo">Photo:</label>
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                          </div>
+
+
+                        <!-- Add other fields for editing here -->
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button><a href="{% url 'patient-full' patient.id %}" class="btn btn-secondary">Back</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

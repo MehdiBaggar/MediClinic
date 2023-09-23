@@ -1,0 +1,179 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile Page</title>
+
+    <meta name="author" content="Codeconvey" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/patient-full.css' %}">
+</head>
+<body>
+
+<div class="ScriptTop">
+    <div class="rt-container">
+        <div class="col-rt-4" id="float-right">
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<header class="ScriptHeader">
+    <div class="rt-container">
+    	<div class="col-rt-12">
+        	<div class="rt-heading">
+            	<h1>Patient Profile Page</h1>
+                <button><a href="{% url 'doctor-list'%}" class="btn btn-secondary">Back</a></button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="rt-container">
+          <div class="col-rt-12">
+              <div class="Scriptcontent">
+
+
+<div class="student-profile py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent text-center">
+              <h3>baggar el mehdi</h3>
+              {% if doctor.photo %}
+                    <img class="profile_img" src="{{ doctor.photo.url }}" alt="student dp">
+                {% else %}
+                    <!-- You can display a default image or a placeholder image here -->
+                    <img class="profile_img" src="{% static 'images/img.jpeg' %}" alt="default dp">
+                {% endif %}
+
+          </div>
+          <div class="card-body">
+              <p class="mb-0"><strong class="pr-1">Doctor ID:</strong>{{ doctor.id }}</p>
+              <p class="mb-0"><strong class="pr-1">Full Name:</strong>{{ doctor.first_name }} {{ doctor.last_name }}</p>
+              <p class="mb-0"><strong class="pr-1">Gender:</strong>{{ doctor.gender }}</p>
+              <p class="mb-0"><strong class="pr-1">Age:</strong>{{ age }}</p>
+              <p class="mb-0"><strong class="pr-1">Date of Birth</strong>{{ doctor.date_of_birth }}</p>
+              <p class="mb-0"><strong class="pr-1">Phone number</strong>{{ doctor.phone }}</p>
+              <a href="{% url 'edit_doctor' doctor.id %}" class="btn btn-primary float-right">Edit</a>
+          </div>
+        </div>
+      </div>
+          <div class="col-lg-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-transparent border-0">
+                <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+              </div>
+              <div class="card-body pt-0">
+                <table class="table table-bordered">
+                  <tr>
+                    <th width="30%">Specialization</th>
+                    <td width="2%">:</td>
+                    <td>{{ doctor.speciality }}</td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Hospital</th>
+                    <td width="2%">:</td>
+                    <td>{{ doctor.hospital }}</td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Experience</th>
+                    <td width="2%">:</td>
+                    <td>{{ doctor.experience }} years</td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Contact Email</th>
+                    <td width="2%">:</td>
+                    <td>{{ doctor.email }}</td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Working Hours</th>
+                    <td width="2%">:</td>
+                    <td>{{ doctor.working_hours }}</td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Appointments</th>
+                    <td width="2%">:</td>
+                    <td><a href="{% url 'appointement' %}">View Appointments</a></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+<div>
+    .
+</div>
+<div style="height: 26px"></div>
+<div class="card shadow-sm">
+  <div class="card-header bg-transparent border-0">
+    <h3 class="mb-0"><i class="fa-solid fa-stethoscope"></i> BIO</h3>
+  </div>
+  <div class="card-body pt-0">
+    <p>As a doctor specializing in {{doctor.speciality}}, I work for medi Clinic.</p>
+    <p>I am committed to providing personalized care and using the latest medical advancements to ensure the well-being of my patients.</p>
+  </div>
+</div>
+</div>
+<div style="height: 26px"></div>
+<div class="card shadow-sm">
+  <div class="card-header bg-transparent border-0">
+    <h3 class="mb-0"><i class="fa-solid fa-clock"></i> Working Hours</h3>
+  </div>
+  <div class="card-body pt-0">
+    <p>My working hours are as follows:</p>
+    <table class="table">
+      <tr>
+        <th>Day</th>
+        <th>Working Hours</th>
+      </tr>
+      <tr>
+        <td>Monday</td>
+        <td>9:00 AM - 5:00 PM</td>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td>9:00 AM - 5:00 PM</td>
+      </tr>
+      <tr>
+        <td>Wednesday</td>
+        <td>9:00 AM - 5:00 PM</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>9:00 AM - 1:00 PM</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td>Closed</td>
+      </tr>
+    </table>
+    <p>Please feel free to schedule appointments during my working hours. I look forward to providing you with the best possible care.</p>
+  </div>
+</div>
+</div>
+<!-- partial -->
+
+    		</div>
+		</div>
+    </div>
+</section>
+
+
+
+    <!-- Analytics -->
+
+	</body>
+</html>

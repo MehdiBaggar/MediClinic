@@ -1,0 +1,154 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MediClinic</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+            <a href="{% url 'Userprofile' %}" class="logo">
+                {% if user.photo %}
+                    <img class="profile_img" src="{{ user.photo.url }}" alt="student dp">
+                {% else %}
+                    <!-- You can display a default image or a placeholder image here -->
+                    <img class="profile_img" src="{% static 'images/img.jpeg' %}" alt="default dp">
+                {% endif %}
+                <span class="nav-item">{{ user.first_name }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'home' %}">
+                <i class="fas fa-menorah"></i>
+                <span class="nav-item">Dashboard</span>
+             </a>
+        </li>
+        <li>
+            <a href="{% url 'patient-list' %}">
+                <i class="fa-solid fa-hospital-user"></i>
+                <span class="nav-item">Patients</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'prescriptions' %}">
+                <i class="fa-solid fa-prescription-bottle-medical"></i>
+                <span class="nav-item">Prescriptions</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-list' %}">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="nav-item">Doctors</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'appointement' %}">
+                <i class="fa-regular fa-calendar-check"> </i>
+                <span class="nav-item">appointements</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'payment' %}">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="nav-item">Payements</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Log out</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+      <div class="main-top">
+        <h1>MediClinic</h1>
+        <i class="fa-solid fa-user-doctor"></i>
+      </div>
+      <div class="users">
+        <div class="card">
+          <i class="fa-solid fa-bed-pulse"></i>
+          <h4>Total patient</h4>
+          <p>{{ patient_count }}</p>
+          
+          <a href="{% url 'patient-list' %}"><button>All Patients</button></a>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-calendar-check"></i>
+          <h4>Appointements</h4>
+          <p id="event-count"></p>
+          
+          <a href="{% url 'appointement' %}"><button>All Appointements</button></a>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-folder"></i>
+          <h4>Prescriptions</h4>
+          <p>{{ patient_count }}</p>
+          
+          <button>All Reports</button>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-user-doctor"></i>
+          <h4>Doctors</h4>
+          <p>{{ doctor_count }}</p>
+          
+          <a href="{% url 'doctor-list' %}"><button>All Doctors</button></a>
+        </div>
+      </div>
+
+      <section class="Patients">
+        <div class="Patients-list">
+          <h1>Patients List</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Photo</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for patient in patients %}
+               <tr>
+                  <td>{{patient.id}}</td>
+                  <td>{{patient.first_name}}</td>
+                  <td>{{patient.last_name}}</td>
+                  <td>{{patient.gender}}</td>
+                  <td>{{patient.age}}</td>
+                  <td>{{patient.phone}}</td>
+                  <td>{{patient.status}}</td>
+                  <td><button>View</button></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+<script>
+  // Retrieve the event count from localStorage
+  const eventCount = localStorage.getItem('eventCount');
+
+  // Display the event count in the HTML element
+  const eventCountElement = document.getElementById("event-count");
+  eventCountElement.textContent = `Today events: ${eventCount}`;
+</script>
+</body>
+</html>

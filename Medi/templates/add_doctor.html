@@ -1,0 +1,93 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD Doctor</title>
+    <link rel="stylesheet" href="{% static 'css/edit_page.css' %}">
+</head>
+<body>
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Add Doctor Information</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Create form fields for editing patient information -->
+                        <div class="form-group">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ doctor.first_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ doctor.last_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option value="Male" {% if doctor.gender == 'Male' %}selected{% endif %}>Male</option>
+                                <option value="Female" {% if doctor.gender == 'Female' %}selected{% endif %}>Female</option>
+                                <option value="Other" {% if doctor.gender == 'Other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ doctor.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ doctor.email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth">Date of Birth:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ doctor.date_of_birth|date:'Y-m-d' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="hospital">hospital:</label>
+                            <input type="text" class="form-control" id="hospital" name="hospital" value="{{ doctor.hospital }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="working_hours">working hours:</label>
+                            <input type="text" class="form-control" id="working_hours" name="working_hours" value="{{ doctor.working_hours }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">experience:</label>
+                            <input type="text" class="form-control" id="experience" name="experience" value="{{ doctor.experience }}">
+                        </div>
+                        <div class="form-group">
+                          <label for="speciality">Specialty:</label>
+                          <select class="form-control" id="speciality" name="speciality">
+                            <option value="General Practitioner (GP)">General Practitioner (GP)</option>
+                            <option value="pediatrician">Pediatrician</option>
+                            <option value="Obstetrician/Gynecologist (OB/GYN)">Obstetrician/Gynecologist (OB/GYN)</option>
+                            <option value="dermatologist">Dermatologist</option>
+                            <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+                            <option value="cardiologist">Cardiologist</option>
+                            <option value="psychiatrist">Psychiatrist</option>
+                          </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="photo">Photo:</label>
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                         </div>
+
+
+
+                        <!-- Add other fields for editing here -->
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button><a href="{% url 'doctor-list' %}" class="btn btn-secondary">Back</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

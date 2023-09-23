@@ -1,0 +1,114 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{% static 'css/prescriptions.css' %}">  <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    {% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mediclinic</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+            <a href="{% url 'Userprofile' %}" class="logo">
+                {% if user.photo %}
+                    <img class="profile_img" src="{{ user.photo.url }}" alt="student dp">
+                {% else %}
+                    <!-- You can display a default image or a placeholder image here -->
+                    <img class="profile_img" src="{% static 'images/img.jpeg' %}" alt="default dp">
+                {% endif %}
+                <span class="nav-item">{{ user.first_name }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-home' %}">
+                <i class="fas fa-menorah"></i>
+                <span class="nav-item">Dashboard</span>
+             </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-patient-list' %}">
+                <i class="fa-solid fa-hospital-user"></i>
+                <span class="nav-item">Patients</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-prescriptions' %}">
+                <i class="fa-solid fa-prescription-bottle-medical"></i>
+                <span class="nav-item">Prescriptions</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-appointement' %}">
+                <i class="fa-regular fa-calendar-check"> </i>
+                <span class="nav-item">appointements</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'doctor-payment' %}">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="nav-item">Payements</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Log out</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+        <div class="Patients-list">
+          <h1>Patients List</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last name</th>
+                <th>Bill</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for patient in patients %}
+               <tr>
+                  <td>{{patient.id}}</td>
+                  <td>{{patient.first_name}}</td>
+                  <td>{{patient.last_name}}</td>
+                  <td><a href="{% url 'payment-pdf' patient.id patient.doctor_id %}"><button>View</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+
+</body>
+</html>
+
+</body>
+</html>

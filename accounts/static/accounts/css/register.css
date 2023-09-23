@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"Poppins", sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../images/61805.jpg') no-repeat;
+    background-size: cover;
+}
+.wrapper{
+    position: relative;
+    width: 420px;
+    background: url('../images/61805.jpg') no-repeat;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+.wrapper .input-box{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: aliceblue;
+    padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder{
+    color: aliceblue;   
+}
+.input-box i{
+    position: absolute;
+    right: 55px;
+    font-size: 20px;
+    text-align: center;
+    top:32%;
+    transform: translateY(-50%);
+}
+.lock i{
+    position: absolute;
+    right: 55px;
+    font-size: 20px;
+    text-align: center;
+    top:51%;
+    transform: translateY(-50%);
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: aliceblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+.wrapper .login-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px; 
+}
+.login-link p a {
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-link p a:hover{
+    text-decoration: underline;
+}
+.gender-box{
+    margin-top: 1px;
+    margin-bottom: 20px;
+}
+.gender-box h3{
+    color: aliceblue;
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.gender-option{
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+}
+.gender{display: flex;
+    align-items: center;
+    column-gap: 50px;
+}
+.gender{
+    column-gap: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.gender input{
+    cursor: pointer;
+}
+.gender label{
+    cursor: pointer;
+}
+.select-box{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px; /* Set a maximum width to prevent stretching */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: aliceblue;
+    overflow: hidden;
+}
+.select-box select{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 20px 20px 20px 20px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: aliceblue;
+    appearance: none; /* Remove default styling on Chrome/Safari */
+    -webkit-appearance: none; /* Remove default styling on Firefox */
+    cursor: pointer;
+}
